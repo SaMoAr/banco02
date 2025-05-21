@@ -99,4 +99,6 @@ public class ClienteService{
         cliente.setBloqueado(true);
         clienteRepository.save(cliente);
     }
+
+
 }
