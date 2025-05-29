@@ -14,15 +14,15 @@ public class CuentaService {
      private final CuentaRepository cuentaRepository;
 
      //Metodo para crear cuentas que son accedidas por medio del Repositorio de dicha clase
-     public Cuenta crearCuenta(String numero, TipoCuenta tipo, double saldoInicial){
-        Cuenta cuenta = Cuenta.builder()
-        .cliente(null)
-        .numeroCuenta(numero)
-        .tipoCuenta(tipo)
-        .saldo(saldoInicial)
-        .build();
-        return cuentaRepository.save(cuenta);
-    }
+     public Cuenta crearCuenta( Cliente cliente, String numeroCuenta, TipoCuenta tipoCuenta, double saldo){
+         Cuenta cuenta = Cuenta.builder()
+                 .cliente(cliente)
+                 .numeroCuenta(numeroCuenta)
+                 .tipoCuenta(tipoCuenta)
+                 .saldo(saldo)
+                 .build();
+         return cuentaRepository.save(cuenta);
+     }
 
 
     //Se define opcional el buscar una cuenta por numeroCuenta de cuenta

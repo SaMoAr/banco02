@@ -19,7 +19,8 @@ public class Cliente {
     private long id;
     @Column(name = "nombre", unique = true, nullable = false)
     private String nombre;
-    private String identificacion;
+    @Column(unique = true)
+    private String identificacionCliente;
     private String pin;
     private boolean bloqueado;
     private int intentosFallidos;

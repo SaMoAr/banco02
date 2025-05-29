@@ -20,8 +20,11 @@ public class Cuenta {
     @Column(unique = true)
     private String numeroCuenta;
     private double saldo;
-    //Enum de tipo de cuenta 
+    @Column(unique = true)
+    private String identificacionCliente;
+    //Enum de tipo de cuenta
     @Enumerated(EnumType.STRING)
+
     private TipoCuenta tipoCuenta;
     //Relación uno-a-muchos con Movimiento
     @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)

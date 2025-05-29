@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.sistemabancario02.banco02.entity.*;
 import com.sistemabancario02.banco02.repository.*;
+import java.util.List;
 import lombok.*;
 
 @Service
@@ -12,17 +13,23 @@ public class ClienteService{
 
     private final ClienteRepository clienteRepository;
 
-    //Metodo para crear un cliente estableciendo bloqueado como false e intentos fallidos con valor inicial 0
-    public Cliente crearCliente(Cliente cliente){
-        cliente.setBloqueado(false);
-        cliente.setIntentosFallidos(0);
-        return clienteRepository.save(cliente);
+    public Cliente crearCliente(Cliente cliente) {
+
+
+        cliente.setNombre(cliente.getNombre().toUpperCase()); // Esto está bien si quieres el nombre en mayúsculas
+        cliente.setBloqueado(false); // Inicializa a false
+        cliente.setIntentosFallidos(0); // Inicializa a 0
+        return clienteRepository.save(cliente); // Guarda el cliente ya mapeado por Spring
+    }
+
+    public List<Cliente> obtenerTodosLosClientes() {
+        return clienteRepository.findAll();
     }
 
 
     //Metodo con retorno de datos opcional que busca clientes por identificación
-    public Optional<Cliente> buscarPorIdentificacion(String identificacion){
-        return clienteRepository.findByIdentificacion(identificacion);
+    public Optional<Cliente> buscarPorIdentificacionCliente(String identificacionCliente){
+        return clienteRepository.findByIdentificacionCliente(identificacionCliente);
     }
 
     //Metodo para validar el pin del cliente con el cual puede acceder a los productos
@@ -57,9 +64,9 @@ public class ClienteService{
         
     }
     //Metodo para desbloquear Un cliente bloqueado
-    public void desbloquearCliente(String identificacion, String nuevoPin){
+    public void desbloquearCliente(String id, String nuevoPin){
         //Se establece optional porque puede o no que haya un usuario
-        Optional<Cliente> optionalCliente = clienteRepository.findByIdentificacion(identificacion);
+        Optional<Cliente> optionalCliente = clienteRepository.findByIdentificacionCliente(id);
         //Se valida que el opcional ceunte como "PRESENTE"
         if(optionalCliente.isPresent()){
             //En caso de que este presente se obtienen los valores actuales de Cliente y se cambian los valores

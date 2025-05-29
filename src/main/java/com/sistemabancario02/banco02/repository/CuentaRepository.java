@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.List;
 import com.sistemabancario02.banco02.entity.Cliente;
 
-public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
+public interface CuentaRepository extends JpaRepository<Cuenta , Long> {
     Optional<Cuenta> findByNumeroCuenta(String numeroCuenta);
     List<Cuenta> findByCliente(Cliente cliente);
 

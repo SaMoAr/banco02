@@ -6,5 +6,5 @@ import com.sistemabancario02.banco02.entity.Cliente;
 
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    Optional <Cliente> findByIdentificacion(String identificacion);
+    Optional <Cliente> findByIdentificacionCliente(String identificacionCliente);
 }

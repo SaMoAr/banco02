@@ -96,8 +96,8 @@ public class MovimientoService {
 
     }
 
-    public boolean realizarRetiroVerificado(String identificacion, String numeroCuenta, double monto) {
-        Cliente cliente = clienteRepository.findByIdentificacion(identificacion)
+    public boolean realizarRetiroVerificado(String identificacionCliente, String numeroCuenta, double monto) {
+        Cliente cliente = clienteRepository.findByIdentificacionCliente(identificacionCliente)
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
         Cuenta cuenta = cuentaRepository.findByNumeroCuenta(numeroCuenta)
                 .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
